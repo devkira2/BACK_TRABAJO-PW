@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/dataBase.js';
+import ProductCategory from './productCategory.js'
 
 const Product = sequelize.define('Product', {
     id: {
@@ -146,6 +147,15 @@ const Product = sequelize.define('Product', {
     features: {
         type: DataTypes.STRING(100),
         allowNull: true,
+    }, 
+    category_id: {  
+        type: DataTypes.INTEGER,
+        references: {
+            model: ProductCategory,  
+            key: 'id'  
+        },
+        onUpdate: 'CASCADE',  
+        onDelete: 'SET NULL'  
     }
 }, {
     timestamps: false,
