@@ -1,29 +1,20 @@
-// models/ProductCategory.js
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
 
-module.exports = (sequelize, DataTypes) => {
-    const ProductCategory = sequelize.define('ProductCategory', {
-      id: {
-        type: DataTypes.INTEGER,
+const ProductCategory = sequelize.define('ProductCategory', {
+    id: {
+        type: DataTypes.BIGINT,
         primaryKey: true,
-        autoIncrement: true
-      },
-      name: {
-        type: DataTypes.STRING,
+        autoIncrement: true,
+    },
+    name: {
+        type: DataTypes.TEXT,
+        unique: true,
         allowNull: false,
-        unique: true
-      }
-    }, {
-      tableName: 'product_categories',
-      timestamps: false // No createdAt/updatedAt fields
-    });
-  
-    // Associations
-    // A ProductCategory can have many Products
-    ProductCategory.hasMany(sequelize.models.Product, {
-      foreignKey: 'category_id',
-      as: 'products'
-    });
-  
-    return ProductCategory;
-  };
-  
+    }
+}, {
+    timestamps: false,
+    tableName: 'product_categories'
+});
+
+export default ProductCategory;

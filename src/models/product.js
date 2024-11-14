@@ -1,94 +1,155 @@
-// models/Product.js
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
 
-module.exports = (sequelize, DataTypes) => {
-    const Product = sequelize.define('Product', {
-      id: {
+const Product = sequelize.define('Product', {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
-      },
-      image_url: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      code: {
-        type: DataTypes.INTEGER,
+        autoIncrement: true,
+    },
+    imageUrl: {
+        type: DataTypes.STRING(255),
+    },
+    name: {
+        type: DataTypes.STRING(255),
         allowNull: false,
-        unique: true
-      },
-      stock: {
-        type: DataTypes.INTEGER,
+    },
+    code: {
+        type: DataTypes.STRING(50),
+        unique: true,
         allowNull: false,
-        defaultValue: 0
-      },
-      price_usd: {
+    },
+    stock: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    priceUSD: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-      },
-      price_pen: {
+        allowNull: true,
+    },
+    pricePEN: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-      },
-      description: {
+        allowNull: true,
+    },
+    description: {
         type: DataTypes.TEXT,
-        allowNull: true
-      },
-      model: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      screen: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      cpu: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      memory: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      storage: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      graphics: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      category_id: {
+        allowNull: true,
+    },
+    model: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+    },
+    screen: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    cpu: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    memory: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    storage: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    graphics: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    category: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    length: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    type: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    output: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    socket: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    memorySupport: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    busSpeed: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    cooling: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    frequency: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    cache: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    screenSize: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    refreshRate: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    responseTime: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    resolution: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    ports: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+    curved: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+    },
+    fanSize: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    ledType: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    color: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    numberOfFans: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      }
-    }, {
-      tableName: 'products',
-      timestamps: false // No createdAt/updatedAt fields
-    });
-  
-    // Associations
-    // Each product belongs to one category
-    Product.belongsTo(sequelize.models.ProductCategory, {
-      foreignKey: 'category_id',
-      as: 'category'
-    });
-  
-    // Each product can be part of many order items
-    Product.hasMany(sequelize.models.OrderItem, {
-      foreignKey: 'product_id',
-      as: 'orderItems'
-    });
-  
-    // Each product can have multiple sales records
-    Product.hasMany(sequelize.models.ProductSale, {
-      foreignKey: 'product_id',
-      as: 'productSales'
-    });
-  
-    return Product;
-  };
-  
+        allowNull: true,
+    },
+    bus: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+    },
+    features: {
+        type: DataTypes.STRING(100),
+        allowNull: true,
+    }
+}, {
+    timestamps: false,
+    tableName: 'products'
+});
+
+export default Product;
