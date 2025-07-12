@@ -1,14 +1,17 @@
 {
-  "name": "api-example",
+  "name": "tiendita-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend API para Tiendita Online - E-commerce",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "init": "node index.js --init"
+    "start": "node index.js",
+    "init": "node index.js --init",
+    "init:seed": "node index.js --init --seed",
+    "seed": "node index.js --seed"
   },
-  "author": "",
+  "author": "Tu Nombre",
   "license": "ISC",
   "type": "module",
   "dependencies": {

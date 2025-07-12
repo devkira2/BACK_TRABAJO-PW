@@ -1,37 +1,48 @@
-// models/Order.js
-
-module.exports = (sequelize, DataTypes) => {
-    const Order = sequelize.define('Order', {
-      id: {
-        type: DataTypes.INTEGER,
+﻿import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
+const Order = sequelize.define('Order', {
+    id: {
+        type: DataTypes.STRING(20),
         primaryKey: true,
-        autoIncrement: true
-      },
-      user_id: {
-        type: DataTypes.INTEGER,
+    },
+    usuario: {
+        type: DataTypes.STRING(255),
         allowNull: false
-      },
-      order_date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-      },
-      total_price_usd: {
-        type: DataTypes.DECIMAL(10, 2)
-      },
-      total_price_pen: {
-        type: DataTypes.DECIMAL(10, 2)
-      }
-    }, {
-      tableName: 'orders',
-      timestamps: false, // Assuming no createdAt/updatedAt fields
-    });
-  
-    // Associations
-    Order.belongsTo(sequelize.models.User, {
-      foreignKey: 'user_id',
-      as: 'user' // Alias for accessing the associated user
-    });
-  
-    return Order;
-  };
-  
+    },
+    usuarioId: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        field: 'user_id'
+    },
+    fecha: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+        field: 'order_date'
+    },
+    total: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+    },
+    estado: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        defaultValue: 'Pendiente',
+        validate: {
+            isIn: [['Pendiente', 'Por entregar', 'Entregado', 'Cancelado']]
+        }
+    },
+    total_price_usd: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: true
+    },
+    total_price_pen: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: true
+    }
+}, {
+    timestamps: false,
+    tableName: 'orders'
+});
+export default Order;
+

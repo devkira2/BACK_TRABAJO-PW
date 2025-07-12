@@ -1,7 +1,4 @@
 ﻿import User from '../models/user.js';
-const create = async (userData) => {
-    return await User.create(userData);
-};
 const update = async (id, data) => {
     const user = await User.findByPk(id);
     if (!user) return null;
@@ -18,7 +15,6 @@ const findByDocument = async (document) => {
     return await User.findOne({ where: { nroDocumento: document } });
 };
 export default { 
-    create,
     update, 
     findByUsername, 
     findByEmail, 

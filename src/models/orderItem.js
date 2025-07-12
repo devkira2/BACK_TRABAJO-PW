@@ -1,48 +1,47 @@
-// models/OrderItem.js
-
-module.exports = (sequelize, DataTypes) => {
-    const OrderItem = sequelize.define('OrderItem', {
-      id: {
+﻿import { DataTypes } from 'sequelize';
+import sequelize from '../config/dataBase.js';
+const OrderItem = sequelize.define('OrderItem', {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-      },
-      order_id: {
+    },
+    order_id: {
+        type: DataTypes.STRING(20),
+        allowNull: false
+    },
+    product_id: {
         type: DataTypes.INTEGER,
         allowNull: false
-      },
-      product_id: {
-        type: DataTypes.INTEGER,
+    },
+    nombre: {
+        type: DataTypes.STRING(255),
         allowNull: false
-      },
-      quantity: {
+    },
+    categoria: {
+        type: DataTypes.STRING(100),
+        allowNull: true
+    },
+    quantity: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      price_usd: {
+        allowNull: false,
+        defaultValue: 1
+    },
+    precio: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false
-      },
-      price_pen: {
+    },
+    price_usd: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
-      }
-    }, {
-      tableName: 'order_items',
-      timestamps: false // No createdAt/updatedAt fields
-    });
-  
-    // Associations
-    OrderItem.belongsTo(sequelize.models.Order, {
-      foreignKey: 'order_id',
-      as: 'order' // Alias for accessing the associated order
-    });
-  
-    OrderItem.belongsTo(sequelize.models.Product, {
-      foreignKey: 'product_id',
-      as: 'product' // Alias for accessing the associated product
-    });
-  
-    return OrderItem;
-  };
-  
+        allowNull: true
+    },
+    price_pen: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: true
+    }
+}, {
+    tableName: 'order_items',
+    timestamps: false
+});
+export default OrderItem;
+
