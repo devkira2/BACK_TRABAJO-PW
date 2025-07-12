@@ -428,4 +428,4 @@ Este backend es totalmente compatible con tu frontend React. Maneja tanto los no
 
 ---
 
-**¡Tu backend está listo para funcionar con el frontend de React! 🎉**
+**¡Tu backend está listo para funcionar con el frontend de React! 🎉**// Cambio mínimo para volver a desplegar
