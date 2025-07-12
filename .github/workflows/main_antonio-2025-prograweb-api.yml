@@ -67,6 +67,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'antonio-2025-prograweb-api'
-          slot-name: 'Production'
+     
           package: .
           
